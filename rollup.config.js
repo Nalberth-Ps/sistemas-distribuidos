@@ -22,6 +22,10 @@ export default {
     }),
     postcss({
       extensions: ['.css'],
+      extract: 'main.css',
+      config: {
+        path: './postcss.config.cjs',
+      },
     }),
     copy({
       targets: [{ src: 'index.html', dest: 'dist' }],
@@ -30,6 +34,7 @@ export default {
       open: true,
       contentBase: 'dist',
       port: 3000,
+      historyApiFallback: true,
     }),
     livereload({
       watch: 'dist',
