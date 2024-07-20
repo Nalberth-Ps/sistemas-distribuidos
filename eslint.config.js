@@ -21,22 +21,15 @@ export default [
       '@typescript-eslint': eslintPluginTypeScript,
       prettier: eslintPluginPrettier,
     },
-    extends: [
-      'eslint:recommended',
-      'plugin:@typescript-eslint/recommended',
-      'plugin:prettier/recommended',
-    ],
     rules: {
       semi: ['error', 'never'],
       quotes: ['error', 'single'],
       'prettier/prettier': 'error',
       '@typescript-eslint/no-var-requires': 'off',
+      ...eslintConfigPrettier.rules,
     },
     linterOptions: {
       reportUnusedDisableDirectives: true,
     },
-  },
-  {
-    rules: eslintConfigPrettier.rules,
   },
 ]
