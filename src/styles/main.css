@@ -1,12 +1,19 @@
-/* src/styles/main.css */
+@import './variables.css';
+@import './form.css';
 
 body {
   font-family: Arial, sans-serif;
-  background-color: #f0f0f0;
   margin: 0;
-  padding: 20px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  min-height: 100dvh;
+  background-color: var(--background-color);
 }
 
-h1 {
-  color: #333;
+.title {
+  margin-bottom: 20px;
 }

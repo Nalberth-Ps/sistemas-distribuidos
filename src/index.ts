@@ -1,11 +1,6 @@
-// src/index.ts
-
-import './styles/main.css';
-import { greet } from './components/Greeting';
+import './styles/main.css'
+import { initializeForm } from './components/Form'
 
 document.addEventListener('DOMContentLoaded', () => {
-  const greetingElement = document.getElementById('greeting');
-  if (greetingElement) {
-    greetingElement.textContent = greet('World');
-  }
-});
+  initializeForm()
+})

@@ -1,12 +1,83 @@
 <!doctype html>
-<html lang="en">
+<html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Meu Projeto TypeScript com Rollup</title>
+    <meta name="description" content="Formulário de Scraping" />
+    <meta name="keywords" content="HTML, CSS, JavaScript, TypeScript, Rollup" />
+    <meta name="author" content="Nalberth Santos Ribeiro" />
+    <title>Formulário de Scraping</title>
+    <link rel="stylesheet" href="main.css" />
   </head>
   <body>
-    <h1 id="greeting">Loading...</h1>
+    <h2 class="form-title">Formulário de Scraping</h2>
+    <form id="contact-form" class="contact-form">
+      <div class="form-group form-group-name">
+        <label>
+          <span class="form-label">Nome:</span>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            class="form-input form-input-name"
+            required
+          />
+        </label>
+      </div>
+      <div class="form-group form-group-email">
+        <label>
+          <span class="form-label">Email:</span>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            class="form-input form-input-email"
+            required
+          />
+        </label>
+      </div>
+      <div class="form-group form-group-phone">
+        <label>
+          <span class="form-label">Telefone:</span>
+          <input
+            type="tel"
+            id="phone"
+            name="phone"
+            class="form-input form-input-phone"
+            required
+          />
+        </label>
+      </div>
+      <div class="form-group form-group-looking-for">
+        <label>
+          <span class="form-label">O que você está procurando:</span>
+          <input
+            type="text"
+            id="looking-for"
+            name="looking-for"
+            class="form-input form-input-looking-for"
+            required
+          />
+        </label>
+      </div>
+      <div class="form-group form-group-agree">
+        <label>
+          <input
+            type="checkbox"
+            id="agree"
+            name="agree"
+            class="form-checkbox form-checkbox-agree"
+            required
+          />
+          <span class="form-label">Concordo com o uso dos meus dados</span>
+        </label>
+      </div>
+      <div class="form-group form-group-submit">
+        <button type="submit" class="form-button form-button-submit">
+          Enviar
+        </button>
+      </div>
+    </form>
     <script src="bundle.js"></script>
   </body>
 </html>
