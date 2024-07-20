@@ -4,7 +4,7 @@ import typescript from '@rollup/plugin-typescript'
 import serve from 'rollup-plugin-serve'
 import livereload from 'rollup-plugin-livereload'
 import postcss from 'rollup-plugin-postcss'
-import copy from 'rollup-plugin-copy'
+import copy from 'rollup-plugin-copy-watch'
 
 export default {
   input: 'src/index.ts',
@@ -28,6 +28,7 @@ export default {
       },
     }),
     copy({
+      watch: 'index.html',
       targets: [{ src: 'index.html', dest: 'dist' }],
     }),
     serve({
@@ -41,7 +42,7 @@ export default {
     }),
   ],
   watch: {
-    include: 'src/**',
+    include: ['src/**', 'index.html'],
     clearScreen: false,
   },
 }
