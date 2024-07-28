@@ -64,6 +64,7 @@ export function isFormDataValid(formData: ContactFormData): boolean {
     !!formData.name &&
     isEmailValid(formData.email) &&
     isPhoneValid(formData.phone) &&
+    !!formData.lookingFor &&
     formData.agree
   )
 }
