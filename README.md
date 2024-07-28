@@ -15,6 +15,12 @@ A versão para a primeira entrega do projeto realiza as seguintes funcionalidade
   - Exibe os dados no console.
   - Reseta o formulário após a submissão.
 
+## Pré-requisitos
+
+Certifique-se de ter a versão correta do Node.js instalada para evitar problemas de compatibilidade:
+
+- Node.js: `^18.18.0 || >=20.0.0`
+
 ## Instalação
 
 Clone o repositório e instale as dependências:
