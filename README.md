@@ -6,6 +6,15 @@ Este é um projeto para a disciplina de Sistemas Distribuídos, utilizando Rollu
 
 Este projeto é uma aplicação que utiliza Rollup para empacotar módulos JavaScript e TypeScript. A configuração inclui suporte para TypeScript, PostCSS, e um servidor de desenvolvimento com recarregamento ao vivo.
 
+## Funcionalidades da Primeira Entrega
+
+A versão para a primeira entrega do projeto realiza as seguintes funcionalidades:
+
+  - Captura dados de um formulário.
+  - Realiza uma validação simples dos dados recebidos.
+  - Exibe os dados no console.
+  - Reseta o formulário após a submissão.
+
 ## Instalação
 
 Clone o repositório e instale as dependências:
@@ -31,8 +40,6 @@ npm run build
 ```
 
 ## Scripts
-
-<!-- Create a table with scripts -->
 
 | Comando          | Descrição                                          |
 | ---------------- | -------------------------------------------------- |
