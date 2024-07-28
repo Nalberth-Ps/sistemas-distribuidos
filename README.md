@@ -15,6 +15,8 @@ A versão para a primeira entrega do projeto realiza as seguintes funcionalidade
   - Exibe os dados no console.
   - Reseta o formulário após a submissão.
 
+Para testar o projeto, basta abrir o arquivo `index.html` na pasta `dist` em um navegador.
+
 ## Pré-requisitos
 
 Certifique-se de ter a versão correta do Node.js instalada para evitar problemas de compatibilidade:
