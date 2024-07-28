@@ -1,3 +1,9 @@
+.form-title {
+  margin-bottom: 1.25rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
 .contact-form {
   background: #fff;
   padding: 1.25rem;
@@ -27,11 +33,16 @@
 }
 
 .form-input {
-  width: calc(100% - 1.25rem);
+  width: 100%;
   padding: 0.625rem;
   border: 0.0625rem solid var(--input-border-color);
   border-radius: 0.25rem;
+  font-size: 0.875rem;
   transition: border-color 0.3s;
+}
+
+.form-input::placeholder {
+  font-size: 0.875rem;
 }
 
 .form-input:hover,
@@ -67,4 +78,10 @@
 
 .form-button:disabled:hover {
   filter: brightness(0.9);
+}
+
+@media (max-width: 48rem) {
+  .contact-form {
+    max-width: 100%;
+  }
 }

@@ -10,17 +10,17 @@
     <link rel="stylesheet" href="main.css" />
   </head>
   <body>
-    <h2 class="form-title">Formulário de Scraping</h2>
+    <h1 class="form-title">Formulário de Scraping</h1>
     <form id="contact-form" class="contact-form">
       <div class="form-group form-group-name">
         <label>
           <span class="form-label">Nome:</span>
           <input
-            type="text"
+            class="form-input form-input-name"
             id="name"
             name="name"
-            class="form-input form-input-name"
-            required
+            type="text"
+            placeholder="Digite seu nome completo"
           />
         </label>
       </div>
@@ -28,10 +28,11 @@
         <label>
           <span class="form-label">Email:</span>
           <input
-            type="email"
+            class="form-input form-input-email"
             id="email"
             name="email"
-            class="form-input form-input-email"
+            type="email"
+            placeholder="Digite seu email (ex: exemplo@dominio.com)"
             required
           />
         </label>
@@ -40,10 +41,14 @@
         <label>
           <span class="form-label">Telefone:</span>
           <input
-            type="tel"
+            class="form-input form-input-phone"
             id="phone"
             name="phone"
-            class="form-input form-input-phone"
+            type="tel"
+            inputmode="tel"
+            maxlength="11"
+            pattern="^\d{10,11}$"
+            placeholder="Digite seu telefone com DDD (ex: 11987654321)"
             required
           />
         </label>
@@ -52,10 +57,11 @@
         <label>
           <span class="form-label">O que você está procurando:</span>
           <input
-            type="text"
+            class="form-input form-input-looking-for"
             id="looking-for"
             name="looking-for"
-            class="form-input form-input-looking-for"
+            type="text"
+            placeholder="Descreva o que você está procurando"
             required
           />
         </label>

@@ -158,6 +158,82 @@ describe('Form Component', () => {
     expect(submitButton.disabled).toBe(false)
   })
 
+  test('phone number validation should fail for invalid phone numbers', () => {
+    if (!form) throw new Error('Form not found')
+
+    const invalidPhoneNumbers = ['abc', '123-456-789', '123456789012']
+
+    invalidPhoneNumbers.forEach(invalidPhone => {
+      setInputValue('phone', invalidPhone)
+      const phoneInput = getInputElement('phone')
+      expect(phoneInput.validity.valid).toBe(false)
+    })
+  })
+
+  test('optional fields should not block form submission', () => {
+    if (!form) throw new Error('Form not found')
+
+    const mockEvent = {
+      preventDefault: jest.fn(),
+      target: form,
+    } as unknown as Event
+
+    setInputValue('name', 'John Doe')
+    setInputValue('email', 'john@example.com')
+    setInputValue('phone', '1234567890')
+    setInputValue('looking-for', '')
+
+    handleFormSubmission(mockEvent)
+
+    expect(mockEvent.preventDefault).toHaveBeenCalled()
+    expect(form.reset).toHaveBeenCalled()
+  })
+
+  test('form fields should update submit button state on input change', () => {
+    if (!form) throw new Error('Form not found')
+
+    const submitButton = form.querySelector<HTMLButtonElement>(
+      'button[type="submit"]',
+    )
+    if (!submitButton) throw new Error('Submit button not found')
+
+    setInputValue('name', 'John Doe')
+    getInputElement('name').dispatchEvent(new Event('input'))
+
+    setInputValue('email', 'john@example.com')
+    getInputElement('email').dispatchEvent(new Event('input'))
+
+    setInputValue('phone', '1234567890')
+    getInputElement('phone').dispatchEvent(new Event('input'))
+
+    setInputValue('looking-for', 'Job')
+    getInputElement('looking-for').dispatchEvent(new Event('input'))
+
+    setInputValue('agree', true)
+    getInputElement('agree').dispatchEvent(new Event('change'))
+
+    updateSubmitButtonState(form)
+    expect(submitButton.disabled).toBe(false)
+  })
+
+  test('form submission with invalid phone should not reset form', () => {
+    if (!form) throw new Error('Form not found')
+
+    const mockEvent = {
+      preventDefault: jest.fn(),
+      target: form,
+    } as unknown as Event
+
+    setInputValue('name', 'John Doe')
+    setInputValue('email', 'john@example.com')
+    setInputValue('phone', 'invalid-phone')
+
+    handleFormSubmission(mockEvent)
+
+    expect(mockEvent.preventDefault).toHaveBeenCalled()
+    expect(form.reset).not.toHaveBeenCalled()
+  })
+
   test('initializeForm should warn if form is not found', () => {
     document.body.innerHTML = ''
     const warnSpy = jest.spyOn(console, 'warn').mockImplementation(() => {})

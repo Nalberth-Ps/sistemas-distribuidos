@@ -24,7 +24,12 @@ export function handleFormSubmission(event: Event) {
   const form = event.target as HTMLFormElement
   const formData = extractFormData(form)
 
-  if (!isFormDataValid(formData) || !isEmailValid(formData.email)) return
+  if (
+    !isFormDataValid(formData) ||
+    !isEmailValid(formData.email) ||
+    !isPhoneValid(formData.phone)
+  )
+    return
 
   console.log({ ...formData })
 
@@ -35,6 +40,11 @@ export function handleFormSubmission(event: Event) {
 export function isEmailValid(email: string) {
   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
   return emailPattern.test(email)
+}
+
+export function isPhoneValid(phone: string) {
+  const phonePattern = /^\d{10,11}$/
+  return phonePattern.test(phone)
 }
 
 export function updateSubmitButtonState(form: HTMLFormElement) {
@@ -53,8 +63,7 @@ export function isFormDataValid(formData: ContactFormData): boolean {
   return (
     !!formData.name &&
     isEmailValid(formData.email) &&
-    !!formData.phone &&
-    !!formData.lookingFor &&
+    isPhoneValid(formData.phone) &&
     formData.agree
   )
 }
