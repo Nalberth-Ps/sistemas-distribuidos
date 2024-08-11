@@ -3,47 +3,48 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Formulário de Scraping" />
+    <meta name="description" content="Monitoramento do Dólar" />
     <meta name="keywords" content="HTML, CSS, JavaScript, TypeScript, Rollup" />
     <meta name="author" content="Nalberth Santos Ribeiro" />
-    <title>Formulário de Scraping</title>
+    <title>Monitoramento do Dólar</title>
     <link rel="stylesheet" href="main.css" />
   </head>
   <body>
-    <h1 class="form-title">Formulário de Scraping</h1>
-    <form id="contact-form" class="contact-form">
-      <div class="form-group form-group-name">
-        <label>
-          <span class="form-label">Nome:</span>
-          <input
-            class="form-input form-input-name"
-            id="name"
-            name="name"
-            type="text"
-            placeholder="Digite seu nome completo"
-          />
-        </label>
-      </div>
-      <div class="form-group form-group-email">
-        <label>
-          <span class="form-label">Email:</span>
-          <input
-            class="form-input form-input-email"
-            id="email"
-            name="email"
-            type="email"
-            placeholder="Digite seu email (ex: exemplo@dominio.com)"
-            required
-          />
-        </label>
-      </div>
+    <!-- Navbar -->
+    <nav class="navbar">
+      <ul class="navbar-menu">
+        <li class="navbar-item">
+          <a
+            class="navbar-link"
+            href="#dollar-monitoring-form"
+            data-target="dollar-monitoring-form"
+          >
+            Registrar Alerta
+          </a>
+        </li>
+        <li class="navbar-item">
+          <a
+            class="navbar-link"
+            href="#graph-container"
+            data-target="graph-container"
+          >
+            Ver Gráfico
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <!-- Navbar -->
+
+    <h1 class="form-title">Monitoramento do Dólar</h1>
+
+    <form id="dollar-monitoring-form" class="monitoring-form">
       <div class="form-group form-group-phone">
         <label>
           <span class="form-label">Telefone:</span>
           <input
             class="form-input form-input-phone"
-            id="phone"
-            name="phone"
+            id="phoneNumber"
+            name="phoneNumber"
             type="tel"
             inputmode="tel"
             maxlength="11"
@@ -53,15 +54,16 @@
           />
         </label>
       </div>
-      <div class="form-group form-group-looking-for">
+      <div class="form-group form-group-target-value">
         <label>
-          <span class="form-label">O que você está procurando:</span>
+          <span class="form-label">Valor Alvo do Dólar:</span>
           <input
-            class="form-input form-input-looking-for"
-            id="looking-for"
-            name="looking-for"
-            type="text"
-            placeholder="Descreva o que você está procurando"
+            class="form-input form-input-target-value"
+            id="target-value"
+            name="target-value"
+            type="number"
+            step="0.001"
+            placeholder="Digite o valor-alvo do dólar (ex: 5.20)"
             required
           />
         </label>
@@ -80,10 +82,17 @@
       </div>
       <div class="form-group form-group-submit">
         <button type="submit" class="form-button form-button-submit">
-          Enviar
+          Registrar Alerta
         </button>
       </div>
     </form>
+
+    <!-- Seção do Gráfico -->
+    <div id="graph-container" style="display: none">
+      <!-- O gráfico gerado será inserido aqui -->
+      <p>Gráfico será exibido aqui.</p>
+    </div>
+
     <script src="bundle.js"></script>
   </body>
 </html>

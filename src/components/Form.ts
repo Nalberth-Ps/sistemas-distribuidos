@@ -1,45 +1,51 @@
-import { ContactFormData } from '../typings/form'
+import { createNotification } from '../services/notify'
+import toastr from 'toastr'
+import 'toastr/build/toastr.min.css'
 
-export function extractFormData(form: HTMLFormElement): ContactFormData {
+interface DollarMonitoringFormData {
+  phoneNumber: string
+  targetValue: number
+  agree: boolean
+}
+
+export function extractFormData(
+  form: HTMLFormElement,
+): DollarMonitoringFormData {
   const formData = new FormData(form)
 
-  const name = formData.get('name') as string
-  const email = formData.get('email') as string
-  const phone = formData.get('phone') as string
-  const lookingFor = formData.get('looking-for') as string
+  const phoneNumber = formData.get('phoneNumber') as string
+  const targetValue = parseFloat(formData.get('target-value') as string)
   const agree = formData.get('agree') as string
 
   return {
-    name,
-    email,
-    phone,
-    lookingFor,
+    phoneNumber,
+    targetValue,
     agree: agree === 'on',
   }
 }
 
-export function handleFormSubmission(event: Event) {
+export async function handleFormSubmission(event: Event) {
   event.preventDefault()
 
   const form = event.target as HTMLFormElement
   const formData = extractFormData(form)
 
-  if (
-    !isFormDataValid(formData) ||
-    !isEmailValid(formData.email) ||
-    !isPhoneValid(formData.phone)
-  )
-    return
+  if (!isFormDataValid(formData) || !isPhoneValid(formData.phoneNumber)) return
 
   console.log({ ...formData })
 
-  form.reset()
-  updateSubmitButtonState(form)
-}
+  const notification = await createNotification(
+    formData.phoneNumber,
+    formData.targetValue,
+  )
 
-export function isEmailValid(email: string) {
-  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-  return emailPattern.test(email)
+  if (notification.status === 'error') {
+    toastr.error(notification.message)
+  } else {
+    toastr.success(notification.message)
+  }
+
+  updateSubmitButtonState(form)
 }
 
 export function isPhoneValid(phone: string) {
@@ -59,18 +65,18 @@ export function updateSubmitButtonState(form: HTMLFormElement) {
   submitButton.disabled = !isFormValid
 }
 
-export function isFormDataValid(formData: ContactFormData): boolean {
+export function isFormDataValid(formData: DollarMonitoringFormData): boolean {
   return (
-    !!formData.name &&
-    isEmailValid(formData.email) &&
-    isPhoneValid(formData.phone) &&
-    !!formData.lookingFor &&
+    isPhoneValid(formData.phoneNumber) &&
+    formData.targetValue > 0 &&
     formData.agree
   )
 }
 
 export function initializeForm() {
-  const form = document.getElementById('contact-form') as HTMLFormElement
+  const form = document.getElementById(
+    'dollar-monitoring-form',
+  ) as HTMLFormElement
   if (!form) return console.warn('Form not found')
 
   const submitButton = form.querySelector<HTMLButtonElement>(

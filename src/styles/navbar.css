@@ -1,0 +1,63 @@
+.navbar {
+  background-color: #f9f9f9; /* Bege suave para um fundo acolhedor */
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  padding: 10px 20px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  border: 1px solid #e0e0e0; /* Borda sutil para contorno */
+}
+
+.navbar-menu {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 30px;
+}
+
+.navbar-link {
+  text-decoration: none;
+  color: #5a5a5a; /* Cinza médio para o texto */
+  font-weight: 600;
+  padding: 12px 0;
+  transition:
+    color 0.3s,
+    border-bottom 0.3s;
+  font-size: 16px;
+  position: relative;
+}
+
+.navbar-link::after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 3px;
+  background-color: #c2a477; /* Marrom claro suave */
+  position: absolute;
+  bottom: 5px;
+  left: 50%;
+  transition:
+    width 0.3s ease,
+    left 0.3s ease;
+}
+
+.navbar-link:hover {
+  color: #c2a477; /* Combina com a linha inferior */
+}
+
+.navbar-link:hover::after {
+  width: 100%;
+  left: 0;
+}
+
+.navbar-link.active {
+  color: #c2a477; /* Cor neutra e elegante */
+}
+
+.navbar-link.active::after {
+  width: 100%;
+  left: 0;
+  background-color: #c2a477;
+}
